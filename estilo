@@ -1,0 +1,62 @@
+header {
+    background-color: #1a1a1a; /* Cor de fundo */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff; /* Cor do texto */
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s; /* Transição suave de cor */
+}
+
+nav a:hover {
+    color: #ffc600; /* Cor ao passar o mouse */
+}
+
+/* Estilo do logo */
+.logo {
+    font-size: 24px;
+    color: #ffc600; /* Cor do texto do logo */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Estilo para a área principal da página */
+.main-content {
+    padding: 20px;
+}
+
+/* Estilo para o rodapé */
+footer {
+    background-color: #1a1a1a; /* Cor de fundo */
+    padding: 10px 0;
+    text-align: center;
+    color: #fff; /* Cor do texto do rodapé */
+    font-size: 14px;
+}
+
+/* Estilo para o rodapé com link */
+footer a {
+    color: #ffc600; /* Cor do link no rodapé */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s; /* Transição suave de cor */
+}
+
+footer a:hover {
+    color: #901d1d; /* Cor do link ao passar o mouse */
+}

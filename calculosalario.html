@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo">
+    <title>Calculadora de Salário</title>
+    <style>
+        /* Estilos para o menu */
+        header {
+            background-color: #1a1a1a;
+            /* Cor de fundo */
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+            /* Sombra suave */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            /* Cor do texto */
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s;
+            /* Transição suave de cor */
+        }
+
+        nav a:hover {
+            color: #ffc600;
+            /* Cor ao passar o mouse */
+        }
+
+        /* Estilo do logo */
+        .logo {
+            font-size: 24px;
+            color: #ffc600;
+            /* Cor do texto do logo */
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* Estilo para a área principal da página */
+        .main-content {
+            padding: 20px;
+        }
+
+        /* Estilo para o rodapé */
+        footer {
+            background-color: #1a1a1a;
+            /* Cor de fundo */
+            padding: 10px 0;
+            text-align: center;
+            color: #fff;
+            /* Cor do texto do rodapé */
+            font-size: 14px;
+        }
+
+        /* Estilo para o rodapé com link */
+        footer a {
+            color: #ffc600;
+            /* Cor do link no rodapé */
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            /* Transição suave de cor */
+        }
+
+        footer a:hover {
+            color: #fff;
+            /* Cor do link ao passar o mouse */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a class="logo" href="#">Cálculo Rápido</a>
+        <nav>
+            <ul>
+                <li><a href="#">Página Inicial</a></li>
+                <li><a href="#">Sobre Nós</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <h1>Calculadora de Salário</h1>
+
+        <label for="salarioBruto">Salário Bruto:</label>
+        <input type="number" id="salarioBruto" placeholder="Digite o salário bruto"><br>
+
+        <label for="vt">Vale Transporte (%):</label>
+        <input type="number" id="vt" placeholder="Digite a porcentagem do VT"><br>
+
+        <button onclick="calcularDescontos()">Calcular Descontos</button><br>
+
+        <h2>Salário Bruto: <span id="salarioBrutoResultado"></span></h2>
+        <h2>Vale Transporte: <span id="vtResultado"></span></h2>
+        <h2>Desconto INSS: <span id="inssResultado"></span></h2>
+        <h2>Desconto Imposto de Renda: <span id="irResultado"></span></h2>
+        <h2>Salário Líquido: <span id="salarioLiquido"></span></h2>
+    </main>
+    <footer>
+        &copy; 2023 Cálculo Rápido. Todos os direitos reservados. Desenvolvido por <a href="#">Joandson Silva</a>
+    </footer>
+
+    <script>
+  function calcularDescontos() {
+            const salarioBruto = parseFloat(document.getElementById("salarioBruto").value);
+            const vtPorcentagem = parseFloat(document.getElementById("vt").value);
+
+            if (!isNaN(salarioBruto)) {
+                document.getElementById("salarioBrutoResultado").textContent = "R$" + salarioBruto.toFixed(2);
+
+                // Calcular Vale Transporte (VT) e desconto do INSS
+                const vt = (vtPorcentagem / 100) * salarioBruto;
+                document.getElementById("vtResultado").textContent = "R$" + vt.toFixed(2);
+
+                let inss;
+                if (salarioBruto <= 1693.72) {
+                    inss = 0.08 * salarioBruto;
+                } else if (salarioBruto <= 2822.90) {
+                    inss = 0.09 * salarioBruto;
+                } else {
+                    inss = 0.11 * salarioBruto;
+                }
+                document.getElementById("inssResultado").textContent = "R$" + inss.toFixed(2);
+
+                // Calcular Imposto de Renda (IR)
+                let ir;
+                if (salarioBruto <= 2826.65) {
+                    ir = 0;
+                } else if (salarioBruto <= 3751.05) {
+                    ir = 0.15 * (salarioBruto - 2826.65);
+                } else {
+                    ir = 0.275 * (salarioBruto - 3751.05) + 354.80;
+                }
+                document.getElementById("irResultado").textContent = "R$" + ir.toFixed(2);
+
+                // Calcular Salário Líquido
+                const salarioLiquido = salarioBruto - vt - inss - ir;
+                document.getElementById("salarioLiquido").textContent = "R$" + salarioLiquido.toFixed(2);
+            }
+        }
+    </script>
+</body>
+
+</html>
